@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root.light {
+  --text: #060e1e;
+  --background: #f3f3f3;
+  --primary: #39e0d5;
+  --secondary: #e0e0e0;
+  --tertiary: #116f69;
+  --loading: #f5f5f5;
+}
+
+
+:root.dark {
+  --text: #ffffff;
+  --background: #060e1e;
+  --primary: #39e0d5;
+  --secondary: #093232;
+  --tertiary: #38e1d5;
+  --loading: #0a4646;
+}
+
+::selection {
+  background: transparent;
+  color: var(--primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--background);
+  font-family: 'Heebo', sans-serif;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+
+/* loadin animtaion */
+
+.loadingAnim {
+  animation: loadingAnim 1.2s infinite;
+
+  background: linear-gradient(to right, var(--secondary), var(--loading), var(--secondary));
+}
+
+@keyframes loadingAnim {
+  from {
+    transform: translateX(-100%);
+    ;
+  }
+
+  to {
+    transform: translateX(100%);
+    ;
+  }
+}
+
+
+/* dark mode  */
+
+.switch {
+  position: relative;
+  width: 70px;
+  height: 30px;
+  margin: 0px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--background);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  transition: background-image .7s ease-in-out;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.switch:checked {
+  background-color: rgb(0, 195, 255);
+  background-size: cover;
+  transition: background-image 1s ease-in-out;
+}
+
+.switch:after {
+  content: '';
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  transform: translateX(0px);
+  animation: off .7s forwards cubic-bezier(.8, .5, .2, 1.4);
+  box-shadow: inset 5px -5px 4px rgba(53, 53, 53, 0.3);
+}
+
+@keyframes off {
+  0% {
+    transform: translateX(45px);
+    width: 25px;
+  }
+
+  50% {
+    width: 40px;
+    border-radius: 25px;
+  }
+
+  100% {
+    transform: translateX(0px);
+    width: 25px;
+  }
+}
+
+.switch:checked:after {
+  animation: on .7s forwards cubic-bezier(.8, .5, .2, 1.4);
+  box-shadow: inset -5px -5px 4px rgba(53, 53, 53, 0.3);
+}
+
+@keyframes on {
+  0% {
+    transform: translateX(0px);
+    width: 25px;
+  }
+
+  50% {
+    /* width: 75px; */
+    width: 40px;
+    border-radius: 25px;
+  }
+
+  100% {
+    transform: translateX(41px);
+    width: 25px;
+  }
+}
+
+.switch:checked:before {
+  content: '';
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  transform-origin: 53px 10px;
+  background-color: transparent;
+  box-shadow: 5px -1px 0px #fff;
+  filter: blur(0px);
+  animation: sun .7s forwards ease;
+}
+
+@keyframes sun {
+  0% {
+    transform: rotate(170deg);
+    background-color: transparent;
+    box-shadow: 5px -1px 0px #fff;
+    filter: blur(0px);
+  }
+
+  50% {
+    background-color: transparent;
+    box-shadow: 5px -1px 0px #fff;
+    filter: blur(0px);
+  }
+
+  90% {
+    background-color: #f5daaa;
+    box-shadow: 0px 0px 10px #f5deb4,
+      0px 0px 20px #f5deb4,
+      0px 0px 30px #f5deb4,
+      inset 0px 0px 2px #efd3a3;
+    filter: blur(1px);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    background-color: #f5daaa;
+    box-shadow: 0px 0px 10px #f5deb4,
+      0px 0px 20px #f5deb4,
+      0px 0px 30px #f5deb4,
+      inset 0px 0px 2px #efd3a3;
+    filter: blur(1px);
+  }
+}
+
+.switch:before {
+  content: '';
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  filter: blur(1px);
+  background-color: #f5daaa;
+  box-shadow: 0px 0px 10px #f5deb4,
+    0px 0px 20px #f5deb4,
+    0px 0px 30px #f5deb4,
+    inset 0px 0px 2px #efd3a3;
+  transform-origin: 31px 8px;
+  animation: moon .7s forwards ease;
+}
+
+@keyframes moon {
+  0% {
+    transform: rotate(0deg);
+    filter: blur(1px);
+  }
+
+  50% {
+    filter: blur(1px);
+  }
+
+  90% {
+    background-color: transparent;
+    box-shadow: 5px -1px 0px #fff;
+    filter: blur(0px);
+  }
+
+  100% {
+    transform: rotate(170deg);
+    background-color: transparent;
+    box-shadow: 5px -1px 0px #fff;
+    filter: blur(0px);
+  }
+}
